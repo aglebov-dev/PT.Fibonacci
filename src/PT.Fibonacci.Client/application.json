@@ -1,0 +1,7 @@
+{
+  "Api": "http://api:80",
+  "Repository": {
+    "ConnectionString": "nats://nats:4222",
+    "ConnectionTimeout": "00:00:10"
+  }
+}

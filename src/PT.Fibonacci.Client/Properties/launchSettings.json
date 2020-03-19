@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PT.Fibonacci.Client": {
+      "commandName": "Project",
+      "commandLineArgs": "3"
+    }
+  }
+}

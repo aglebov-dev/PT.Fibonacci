@@ -1,0 +1,7 @@
+{
+  "Url": "http://+:80",
+  "Repository": {
+    "ConnectionString": "nats://localhost:4222",
+    "ConnectionTimeout": "00:00:05"
+  }
+}

@@ -1,0 +1,14 @@
+version: "3.4"
+services:
+  nats:
+    image: nats
+  api:
+    build: 
+      context: .
+      target: api
+    ports:
+      - 5003:80
+  client:
+    build:
+      context: .
+      target: client
