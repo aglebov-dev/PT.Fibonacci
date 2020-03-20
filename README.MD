@@ -15,14 +15,14 @@ dotnet build ./src -c Release
 
 ```powershell
 cd ./src/PT.Fibonacci.Api/bin/Release/netcoreapp3.1/
-PT.Fibonacci.Api.exe
+dotnet PT.Fibonacci.Api.dll
 ```
 
 #### Client:
 
 ```powershell
 cd ./src/PT.Fibonacci.Client/bin/Release/netcoreapp3.1
-PT.Fibonacci.Client.exe 3
+dotnet PT.Fibonacci.Client.dll 3
 ```
 
 > The client accepts as an argument any number that indicates how many parallel calculations will be started
