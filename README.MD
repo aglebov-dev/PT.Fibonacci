@@ -7,18 +7,21 @@ docker-compose -f docker-compose.yml up
 ```
 
 Or you can run applications in a more familiar way
+```powershell
+dotnet build ./src -c Release
+```
 
 #### Api:
 
 ```powershell
-cd ./src/PT.Fibonacci.Api/bin/Realese/netcoreapp3.1/
+cd ./src/PT.Fibonacci.Api/bin/Release/netcoreapp3.1/
 PT.Fibonacci.Api.exe
 ```
 
 #### Client:
 
 ```powershell
-cd ./src/PT.Fibonacci.Client/bin/Realese/netcoreapp3.1
+cd ./src/PT.Fibonacci.Client/bin/Release/netcoreapp3.1
 PT.Fibonacci.Client.exe 3
 ```
 
