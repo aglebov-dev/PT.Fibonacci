@@ -12,20 +12,20 @@ namespace PT.Fibonacci.Client.Job
 {
     internal class ProcessesJob
     {
-        private readonly CancellationTokenSource _lifetime;
+        private readonly CancellationTokenSource _token;
         private readonly IFibonacciService _fibonacciService;
         private readonly IRepository _repository;
         private readonly ILogger<ProcessesJob> _logger;
         private readonly FibonacciApiClient _client;
 
         public ProcessesJob(
-            CancellationTokenSource lifetime,
+            CancellationTokenSource token,
             IFibonacciService fibonacciService,
             IRepository repository,
             ILogger<ProcessesJob> logger,
             FibonacciApiClient client)
         {
-            _lifetime = lifetime;
+            _token = token;
             _fibonacciService = fibonacciService;
             _repository = repository;
             _logger = logger;
@@ -39,7 +39,7 @@ namespace PT.Fibonacci.Client.Job
             {
                 var tasks = Enumerable.Range(0, count).Select(x => CreateTask(x, token));
                 await Task.WhenAll(tasks);
-                _lifetime.Cancel();
+                _token.Cancel();
             }
             else
             {
@@ -60,6 +60,11 @@ namespace PT.Fibonacci.Client.Job
             {
                 foreach (var number in sequence)
                 {
+                    if (_token.IsCancellationRequested)
+                    {
+                        break;
+                    }
+
                     var msg = $"[{taskId}] Receive number = {number}, corralationId = {corralationId}";
                     _logger.LogInformation(msg);
 
@@ -81,7 +86,5 @@ namespace PT.Fibonacci.Client.Job
                 await _client.SendFibonacci(previousNumber, currentNumber, corralationId);
             }
         }
-
-        public Task StopAsync(CancellationToken token) => Task.CompletedTask;
     }
 }

@@ -35,15 +35,14 @@ namespace PT.Fibonacci.DataAccess
             var connection = factory.CreateConnection(_settings.ConnectionString);
             var subscription = connection.SubscribeSync(correlationId);
 
-            return ReadFibonacciAsync212(connection, subscription, token);
+            return GetSequence(connection, subscription, token);
         }
 
-        public IEnumerable<BigInteger> ReadFibonacciAsync212(IConnection connection, ISyncSubscription subscription, CancellationToken token)
+        public IEnumerable<BigInteger> GetSequence(IConnection connection, ISyncSubscription subscription, CancellationToken token)
         {
             var timeout = (int)_settings.ConnectionTimeout.TotalMilliseconds;
             using (connection)
             {
-                
                 while (!token.IsCancellationRequested)
                 {
                     var message = subscription.NextMessage(timeout);
