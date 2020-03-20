@@ -1,4 +1,7 @@
-# How to
+# App
+`Attention: his application is a test task, so you should not use it in product development`
+
+## How to
 
 To launch the application inside the docker container, run the following command
 
