@@ -2,25 +2,25 @@
 
 To launch the application inside the docker container, run the following command
 
-```shell
+```console
 docker-compose -f docker-compose.yml up
 ```
 
 Or you can run applications in a more familiar way
-```powershell
+```console
 dotnet build ./src -c Release
 ```
 
 #### Api:
 
-```powershell
+```console
 cd ./src/PT.Fibonacci.Api/bin/Release/netcoreapp3.1/
 dotnet PT.Fibonacci.Api.dll
 ```
 
 #### Client:
 
-```powershell
+```console
 cd ./src/PT.Fibonacci.Client/bin/Release/netcoreapp3.1
 dotnet PT.Fibonacci.Client.dll 3
 ```
@@ -29,7 +29,7 @@ dotnet PT.Fibonacci.Client.dll 3
 
 #### Nats
 
-```shell
+```console
 docker run -p 8222:8222 -p 4222:4222 -p 6222:6222 -d nats
 ```
 
