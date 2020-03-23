@@ -26,7 +26,7 @@ namespace PT.Fibonacci.Client
             var serviceProvider = seviceCollection.BuildServiceProvider();
             var job = serviceProvider.GetService<ProcessesJob>();
 
-            job.StartAsync(CancellationToken.None)
+            job.StartAsync(_cts.Token)
                 .GetAwaiter()
                 .GetResult();
         }

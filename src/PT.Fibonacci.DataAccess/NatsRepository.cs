@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using NATS.Client;
 using PT.Fibonacci.DataAccess.Contracts;
@@ -38,10 +38,11 @@ namespace PT.Fibonacci.DataAccess
             return GetSequence(connection, subscription, token);
         }
 
-        public IEnumerable<BigInteger> GetSequence(IConnection connection, ISyncSubscription subscription, CancellationToken token)
+        private IEnumerable<BigInteger> GetSequence(IConnection connection, ISyncSubscription subscription, CancellationToken token)
         {
             var timeout = (int)_settings.ConnectionTimeout.TotalMilliseconds;
             using (connection)
+            using (subscription)
             {
                 while (!token.IsCancellationRequested)
                 {
@@ -50,8 +51,6 @@ namespace PT.Fibonacci.DataAccess
 
                     yield return data;
                 }
-
-                subscription.Dispose();
             }
         }
     }
