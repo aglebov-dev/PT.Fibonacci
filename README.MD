@@ -1,6 +1,8 @@
 # App
 `Attention: his application is a test task, so you should not use it in product development`
 
+Application for calculating fibonacci number using distributed interaction via message queue
+
 ## How to
 
 To launch the application inside the docker container, run the following command
